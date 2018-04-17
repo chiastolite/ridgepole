@@ -365,6 +365,7 @@ module Ridgepole
       opts[:null] = true if !opts.key?(:null) && !primary_key
       default_limit = Ridgepole::DefaultsLimit.default_limit(attrs[:type], @options)
       opts.delete(:limit) if opts[:limit] == default_limit
+      opts.delete(:comment) if opts[:ignore_column_comment]
 
       # XXX: MySQL only?
       opts[:default] = nil if !opts.key?(:default) && !primary_key
